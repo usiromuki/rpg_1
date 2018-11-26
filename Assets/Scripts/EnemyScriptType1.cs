@@ -16,7 +16,7 @@ public class EnemyScriptType1 : MonoBehaviour
 
     // Enemyの寿命 
     private int lifeTimeCounter = 0;
-    private int lifeTime = 60 * 10;
+    private int lifeTime = 60 * 15;
 
     void Update ()
     {

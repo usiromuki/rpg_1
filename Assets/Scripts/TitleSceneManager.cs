@@ -34,6 +34,8 @@ public class TitleSceneManager : MySceneManager
     public AudioClip cursorSE;
     private AudioSource audioSource;
 
+    private bool transitionScene = false;
+
     private void Start()
     {
         StartCoroutine(FadeIn());
@@ -125,7 +127,11 @@ public class TitleSceneManager : MySceneManager
     
     public void InputStartButton()
     {
-        TranditionScene(SCENES.STAGE_1);
+        if(!transitionScene)
+        {
+            TranditionScene(SCENES.STAGE_1);
+            transitionScene = true;
+        }
     }
 
     public void InputContinueButton()
