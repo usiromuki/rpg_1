@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Goal
+  - Ground
+  - Block
+  - Enemy
+  - EnemySide
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - block
+  - enemy
+  - ground
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: BackGround
+    uniqueID: 4200002221
+    locked: 0
+  - name: Goal
+    uniqueID: 3530720849
+    locked: 0
+  - name: GameItem
+    uniqueID: 2070569873
+    locked: 0
+  - name: Charactor
+    uniqueID: 3430655123
+    locked: 0
+  - name: UI
+    uniqueID: 3678232329
+    locked: 0
+  - name: GameOver
+    uniqueID: 2714078639
+    locked: 0
+  - name: Fade
+    uniqueID: 1664104097
+    locked: 0
