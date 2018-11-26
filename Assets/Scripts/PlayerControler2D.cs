@@ -17,6 +17,10 @@ public class PlayerControler2D : MonoBehaviour
     private byte moveSpeed = 1; // 移動速度
     private float jumpXAxisForce = 1; // ジャンプの勢い
     private bool isJumping = false; // ジャンプしているか
+    private bool isJumpStart = false; // ジャンプした直後か。
+                                      // ジャンプ直後に勢いが無いと地面とあたってるとみなされ
+                                      // ジャンプのアニメーションが再生されないため、それを防ぐために
+                                      // ジャンプ直後は地面との当たり判定を行わないようにする
     private bool isLeftDashWait = false;
     private bool isRightDashWait = false;
     private bool isLeftDash = false;
@@ -290,6 +294,13 @@ public class PlayerControler2D : MonoBehaviour
         canAttack = true;
     }
 
+    // ジャンプした瞬間に指定時間分だけ地面との当たり判定を止める
+    private IEnumerator JumpStart()
+    {
+        yield return new WaitForSeconds(0.2f);
+        isJumpStart = false;
+    }
+    
     // ジャンプ関連の情報の更新
     private void JumpInputUpdate()
     {
@@ -300,15 +311,18 @@ public class PlayerControler2D : MonoBehaviour
 
         float lineDist = 0.2f;
         float linelength = 1.23f;
-        
-        RaycastHit2D hitLeft = Physics2D.Linecast(this.transform.position - (transform.right * lineDist), this.transform.position - (transform.right * lineDist) - (transform.up * linelength), (1 << LayerMask.NameToLayer("ground")));
-        RaycastHit2D hitRight = Physics2D.Linecast(this.transform.position + (transform.right * lineDist), this.transform.position + (transform.right * lineDist) - (transform.up * linelength), (1 << LayerMask.NameToLayer("ground")));
-        //Debug.DrawLine(this.transform.position - (transform.right * lineDist), this.transform.position - (transform.right * lineDist) - (transform.up * linelength), Color.red);
-        //Debug.DrawLine(this.transform.position + (transform.right * lineDist), this.transform.position + (transform.right * lineDist) - (transform.up * linelength), Color.red);
 
-        if (hitLeft.collider || hitRight.collider)
+        if (!isJumpStart)
         {
-            isJumping = false;
+            RaycastHit2D hitLeft = Physics2D.Linecast(this.transform.position - (transform.right * lineDist), this.transform.position - (transform.right * lineDist) - (transform.up * linelength), (1 << LayerMask.NameToLayer("ground")));
+            RaycastHit2D hitRight = Physics2D.Linecast(this.transform.position + (transform.right * lineDist), this.transform.position + (transform.right * lineDist) - (transform.up * linelength), (1 << LayerMask.NameToLayer("ground")));
+            Debug.DrawLine(this.transform.position - (transform.right * lineDist), this.transform.position - (transform.right * lineDist) - (transform.up * linelength), Color.red);
+            Debug.DrawLine(this.transform.position + (transform.right * lineDist), this.transform.position + (transform.right * lineDist) - (transform.up * linelength), Color.red);
+
+            if (hitLeft.collider || hitRight.collider)
+            {
+                isJumping = false;
+            }
         }
         
         if (Input.GetKeyDown(KeyCode.Space))
@@ -322,6 +336,8 @@ public class PlayerControler2D : MonoBehaviour
                 moveSpeed = 1;
 
                 isJumping = true;
+                isJumpStart = true;
+                StartCoroutine(JumpStart());
                 playerRB.velocity = new Vector2(jumpXAxisForce, 7);
                 sources[0].Play();
             }
