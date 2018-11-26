@@ -101,15 +101,12 @@ public class MySceneManager : MonoBehaviour
             }
         }
         // シーンを変更する
-        if (sceneLoadingAsync.progress >= 0.9f)
-        {
-            sceneLoadingAsync.allowSceneActivation = true;
-            yield break;
-        }
-        else
+        while (sceneLoadingAsync.progress < 0.9f)
         {
             yield return null;
         }
+        sceneLoadingAsync.allowSceneActivation = true;
+        yield break;
     }
 
     protected IEnumerator FadeIn()
