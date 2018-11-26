@@ -39,14 +39,14 @@ public class EndingSceneManager : MySceneManager
             case DISPLAY_IMAGE.CLEAR:
                 if(clearAlpha <= 1.0f)
                 {
-                    clearAlpha+= 0.1f;
+                    clearAlpha += Time.deltaTime;
                     clearSprite.color = new Color(1.0f, 1.0f, 1.0f, clearAlpha);
                 }
                 break;
             case DISPLAY_IMAGE.CREDIT:
                 if (creditAlpha <= 1.0f)
                 {
-                    creditAlpha+=0.1f;
+                    creditAlpha += Time.deltaTime;
                     creditSprite.color = new Color(1.0f, 1.0f, 1.0f, creditAlpha);
                 }
                 break;

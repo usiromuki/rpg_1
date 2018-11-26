@@ -86,7 +86,7 @@ public class MySceneManager : MonoBehaviour
         {
             while (fadeImageAlpha <= 1.0f)
             {
-                fadeImageAlpha += 0.01f;
+                fadeImageAlpha += Time.deltaTime;
                 fadeImageObj.GetComponent<Image>().color = new Color(0.0f, 0.0f, 0.0f, fadeImageAlpha);
                 yield return null;
             }
@@ -95,7 +95,7 @@ public class MySceneManager : MonoBehaviour
         {
             while (fadeImageAlpha <= 1.0f)
             {
-                fadeImageAlpha += 0.01f;
+                fadeImageAlpha += Time.deltaTime;
                 fadeImageObj.GetComponent<SpriteRenderer>().color = new Color(0.0f, 0.0f, 0.0f, fadeImageAlpha);
                 yield return null;
             }
@@ -118,7 +118,7 @@ public class MySceneManager : MonoBehaviour
         {
             while (fadeImageAlpha >= 0.0f)
             {
-                fadeImageAlpha -= 0.01f;
+                fadeImageAlpha -= Time.deltaTime;
                 fadeImageObj.GetComponent<Image>().color = new Color(0.0f, 0.0f, 0.0f, fadeImageAlpha);
                 yield return null;
             }
@@ -127,7 +127,7 @@ public class MySceneManager : MonoBehaviour
         {
             while (fadeImageAlpha >= 0.0f)
             {
-                fadeImageAlpha -= 0.01f;
+                fadeImageAlpha -= Time.deltaTime;
                 fadeImageObj.GetComponent<SpriteRenderer>().color = new Color(0.0f, 0.0f, 0.0f, fadeImageAlpha);
                 yield return null;
             }

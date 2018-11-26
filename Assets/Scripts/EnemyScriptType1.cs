@@ -15,8 +15,8 @@ public class EnemyScriptType1 : MonoBehaviour
     public LayerMask block; // 壁のレイヤーマスク Enemyの方向転換に使用
 
     // Enemyの寿命 
-    private int lifeTimeCounter = 0;
-    private int lifeTime = 60 * 15;
+    private float lifeTimeCounter = 0;
+    private float lifeTime = 5;
 
     void Update ()
     {
@@ -33,7 +33,6 @@ public class EnemyScriptType1 : MonoBehaviour
         else if(moveDir == MOVEDIR.RIGHT)
         {
             this.transform.position -= Vector3.left * Time.deltaTime * 3;
-            float RayLength = -0.7f;
             bool hit = Physics2D.Linecast((Vector2)this.transform.position, (Vector2)this.transform.position + (Vector2.right * 0.5f), block);
             if (hit)
             {
@@ -41,7 +40,7 @@ public class EnemyScriptType1 : MonoBehaviour
             }
         }
         // Enemyの寿命
-        lifeTimeCounter++;
+        lifeTimeCounter+=Time.deltaTime;
         if (lifeTimeCounter > lifeTime)
         {
             Destroy(this.gameObject);
