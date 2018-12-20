@@ -67,3 +67,18 @@ TagManager:
   - name: Fade
     uniqueID: 1664104097
     locked: 0
+  - name: mapBase
+    uniqueID: 2551885723
+    locked: 0
+  - name: mapStage
+    uniqueID: 1881882117
+    locked: 0
+  - name: mapFade
+    uniqueID: 1926761987
+    locked: 0
+  - name: mapFadeMask
+    uniqueID: 2068200047
+    locked: 0
+  - name: ParticleEffect
+    uniqueID: 3165332683
+    locked: 0
